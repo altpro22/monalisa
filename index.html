@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+    <title>Salón Express Mona lisa | Business Pro</title>
+
+    <meta property="og:type" content="website" />
+    <meta id="og-title" property="og:title" content="Salón Express Mona lisa" />
+    <meta id="og-desc" property="og:description" content="Conoce nuestros servicios VIP y agenda tu cita hoy mismo." />
+    <meta property="og:image" content="assets/brand/og_monalisa.jpg" />
+    <meta property="og:url" content="https://altpro22.github.io/seller-digital/" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <button id="btn-audio-control" class="audio-toggle" onclick="toggleAudioGlobal()">
+        <i id="audio-icon" class="fas fa-volume-up"></i>
+    </button>
+
+    <section id="portada-hub" class="main-hub">
+        <header class="hub-header">
+            <img src="assets/brand/logo-mini.png" alt="Logo" class="agency-logo">
+            <div class="brand-text">
+                <span id="business-slogan" class="agency-name">CARGANDO...</span>
+            </div>
+        </header>
+
+        <div class="hero-content">
+            <div id="user-card-vip" class="user-card">
+                <h1 id="business-name" class="vip-client-name">NOMBRE EMPRESA</h1>
+                <div class="main-photo-wrapper" onclick="openProfileZoom()">
+                    <img id="profile-pic-img" src="assets/hero/main-photo.jpg" alt="Perfil" class="vip-photo">
+                    <div class="zoom-hint"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+
+            <button class="btn-donation-shiny" onclick="openWAChat()">
+                AGENDA TU CITA AQUÍ
+            </button>
+
+            <button class="btn-share-passionate" onclick="shareExperienceRobust()">
+                RECOMIÉNDANOS Y COMPARTE
+            </button>
+        </div>
+
+        <nav class="quick-access-menu">
+            <button class="menu-item" onclick="showAppContent('cat1')">
+                <i class="fas fa-star"></i><span>1. CONÓCENOS</span>
+            </button>
+            <button class="menu-item" onclick="showAppContent('cat2')">
+                <i class="fas fa-camera"></i><span>2. GALERÍA LOOKS</span>
+            </button>
+            <button class="menu-item" onclick="showAppContent('cat3')">
+                <i class="fas fa-concierge-bell"></i><span>3. SERVICIOS VIP</span>
+            </button>
+            <button class="menu-item" onclick="showAppContent('cat4')">
+                <i class="fas fa-tags"></i><span>4. PROMOCIONES</span>
+            </button>
+        </nav>
+
+        <div class="social-contact-wrapper">
+            <span class="social-title">CONECTA CON NOSOTROS</span>
+            <nav class="social-contact-hub">
+                <a id="link-yt" href="#" target="_blank" class="social-btn btn-yt-premium" onclick="playClick()"><i class="fab fa-youtube"></i></a>
+                <a id="link-fb" href="#" target="_blank" class="social-btn" onclick="playClick()"><i class="fab fa-facebook-f"></i></a>
+                <a id="link-ig" href="#" target="_blank" class="social-btn" onclick="playClick()"><i class="fab fa-instagram"></i></a>
+                <a id="link-wa" href="#" target="_blank" class="social-btn" onclick="playClick()"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-btn" onclick="openMarketing()"><i class="fas fa-qrcode"></i></a>
+            </nav>
+            <div class="credits-altpro">
+                <span>Produced by Alt Pro</span>
+                <a href="https://wa.me/524491472336" target="_blank" onclick="playClick()">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main id="dynamic-content-layer" class="content-overlay" style="display: none;">
+        <button class="btn-close-overlay" onclick="closeAppContent()">×</button>
+        <section class="tab-pane" id="cat1-pane" style="display: none;"><h2 class="pane-title">CONÓCENOS</h2><div id="grid-cat1" class="premium-photo-grid"></div></section>
+        <section class="tab-pane" id="cat2-pane" style="display: none;"><h2 class="pane-title">GALERÍA DE LOOKS</h2><div id="grid-cat2" class="premium-photo-grid"></div></section>
+        <section class="tab-pane" id="cat3-pane" style="display: none;"><h2 class="pane-title">SERVICIOS VIP</h2><div id="grid-cat3" class="premium-photo-grid"></div></section>
+        <section class="tab-pane" id="cat4-pane" style="display: none;"><h2 class="pane-title">PROMOCIONES</h2><div id="grid-cat4" class="premium-photo-grid"></div></section>
+    </main>
+
+    <div id="lightbox" class="overlay-modal" style="display: none;">
+        <button class="btn-close-global" onclick="closeLightbox()">×</button>
+        <button class="btn-nav-lightbox btn-prev" onclick="changeLightboxImage(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="btn-nav-lightbox btn-next" onclick="changeLightboxImage(1)"><i class="fas fa-chevron-right"></i></button>
+        <div class="zoom-premium-content">
+            <img src="assets/brand/logo-mini.png" class="lightbox-logo-overlay">
+            <img id="lightbox-image" src="" alt="Zoom">
+        </div>
+    </div>
+
+    <div id="marketing-modal" class="overlay-modal" style="display: none;">
+        <div class="modal-card-premium">
+            <button class="btn-close-modal" onclick="closeMarketing()">×</button>
+            <img src="assets/brand/logo-mini.png" alt="Logo" class="modal-logo">
+            <h2 id="modal-business-title" class="flyer-title">SELLER DIGITAL</h2>
+            <div class="qr-container-premium">
+                <img id="qr-code-img" src="" class="qr-image" alt="QR Code" onclick="openLocation()" style="cursor: pointer;">
+                <p class="qr-text">VISITANOS DA CLIC</p>
+            </div>
+            <a id="link-wa-direct" href="#" target="_blank" class="btn-whatsapp-direct"><i class="fab fa-whatsapp"></i> CONTACTO DIRECTO</a>
+        </div>
+    </div>
+
+    <audio id="spot-intro" src="assets/sounds/spot-intro.mp3" preload="auto"></audio>
+    <audio id="sndFxClick" src="assets/sounds/clic.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
