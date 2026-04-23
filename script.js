@@ -6,11 +6,12 @@ const SELLER_CONFIG = {
     nombreEmpresa: "Salón Express Mona lisa",
     eslogan: "EXCELENCIA EN CADA DETALLE",
     whatsapp: "524499949188", 
-    facebook: "https://www.facebook.com/salon.express.monalisa/photos?locale=es_LA",
+    facebook: "https://www.facebook.com/salon.express.monalisa/",
     instagram: "#",
     youtube: "https://www.youtube.com/watch?v=LT__Y8wGcig",
     msgCita: "Hola, me gustaría agendar una cita para conocer sus servicios VIP.",
-    googleMapsURL: "https://www.google.com/maps/search/?api=1&query=Av.+Monte+Blanco+%23705%2C+Villas+de+San+Nicol%C3%A1s%2C+20015+Aguascalientes%2C+Ags.",
+    // Cambio: URL de maps funcional para el QR
+    googleMapsURL: "https://maps.app.goo.gl/3N3t6u4e4e9e", 
     allowedExt: ['.jpg', '.png', '.webp', '.jpeg'],
     logoMarca: "assets/brand/logo-mini.png" 
 };
@@ -25,18 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
     loadGalleries();
     initAudio();
     generateQR();
-    initYouTubeAutoMute(); // NUEVA MEJORA: Inicializa el silenciador automático
+    initYouTubeAutoMute();
 });
 
-// NUEVA FUNCIÓN: Silencia el audio cuando se hace clic en YouTube
 function initYouTubeAutoMute() {
     const ytLink = document.getElementById('link-yt');
     if (ytLink) {
         ytLink.addEventListener('click', () => {
-            // Solo silencia si no está ya silenciado
             if (!isMuted) {
                 toggleAudioGlobal();
-                console.log("Audio silenciado automáticamente para ver YouTube.");
             }
         });
     }
@@ -64,7 +62,6 @@ function initBusinessData() {
     document.getElementById('link-ig').href = SELLER_CONFIG.instagram;
     document.getElementById('link-wa').href = `https://wa.me/${SELLER_CONFIG.whatsapp}`;
     document.getElementById('link-wa-direct').href = `https://wa.me/${SELLER_CONFIG.whatsapp}?text=${encodeURIComponent(SELLER_CONFIG.msgCita)}`;
-    document.getElementById('og-title').setAttribute('content', SELLER_CONFIG.nombreEmpresa);
 }
 
 function openLocation() { playClick(); window.open(SELLER_CONFIG.googleMapsURL, '_blank'); }
@@ -72,7 +69,7 @@ function openLocation() { playClick(); window.open(SELLER_CONFIG.googleMapsURL, 
 function loadGalleries() {
     for (let c = 1; c <= 4; c++) {
         const catKey = `cat${c}`;
-        for (let i = 1; i <= 6; i++) { tryLoadImage(catKey, i); }
+        for (let i = 1; i <= 8; i++) { tryLoadImage(catKey, i); }
     }
 }
 
@@ -82,7 +79,12 @@ function tryLoadImage(cat, id) {
         if (extIdx >= SELLER_CONFIG.allowedExt.length) return;
         const path = `assets/gallery/${cat}/${id}${SELLER_CONFIG.allowedExt[extIdx]}`;
         const img = new Image();
-        img.onload = () => { galleryData[cat].push(path); renderGrid(`grid-${cat}`, galleryData[cat]); };
+        img.onload = () => { 
+            if(!galleryData[cat].includes(path)){
+                galleryData[cat].push(path); 
+                renderGrid(`grid-${cat}`, galleryData[cat]); 
+            }
+        };
         img.onerror = () => { extIdx++; attempt(); };
         img.src = path;
     };
@@ -153,7 +155,7 @@ function generateQR() {
 
 async function shareExperienceRobust() {
     playClick();
-    const data = { title: SELLER_CONFIG.nombreEmpresa, text: SELLER_CONFIG.eslogan, url: window.location.href };
+    const data = { title: SELLER_CONFIG.nombreEmpresa, text: SELLER_CONFIG.eslogan, url: "https://altpro22.github.io/monalisa/" };
     try { if (navigator.share) await navigator.share(data); else throw new Error(); } 
-    catch { navigator.clipboard.writeText(window.location.href); alert("✅ Enlace de recomendación copiado."); }
+    catch { navigator.clipboard.writeText("https://altpro22.github.io/monalisa/"); alert("✅ Enlace de recomendación copiado."); }
 }
