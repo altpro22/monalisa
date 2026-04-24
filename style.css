@@ -32,10 +32,11 @@ body { background-color: var(--bg-premium); font-family: 'Montserrat', sans-seri
 
 .main-hub { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 10px 20px; background: radial-gradient(circle at center, #2c2c2c 0%, #1a1a1a 100%); overflow-y: auto; }
 
-/* CAMBIO: Justificado al final para que el logo quede a la derecha y el texto a su izquierda */
-.hub-header { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-bottom: 10px; width: 100%; max-width: 320px; }
+/* CAMBIO CRÍTICO: justify-content: center para que el bloque de texto y logo estén alineados al centro de la pantalla */
+.hub-header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; width: 100%; max-width: 100%; }
 .agency-logo { width: 35px; height: auto; }
-.brand-text { display: flex; flex-direction: column; text-align: right; }
+/* Texto centrado para equilibrar con la foto principal */
+.brand-text { display: flex; flex-direction: column; text-align: center; }
 .agency-name { color: var(--brand-accent); font-family: 'Bebas Neue'; font-size: 1.1rem; line-height: 1; letter-spacing: 1px; }
 
 .hero-content { display: flex; flex-direction: column; align-items: center; width: 100%; }
