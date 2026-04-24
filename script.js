@@ -10,8 +10,8 @@ const SELLER_CONFIG = {
     instagram: "#",
     youtube: "https://www.youtube.com/watch?v=LT__Y8wGcig",
     msgCita: "Hola, me gustaría agendar una cita para conocer sus servicios VIP.",
-    // Cambio: URL de maps funcional para el QR
-    googleMapsURL: "https://maps.app.goo.gl/3N3t6u4e4e9e", 
+    // Cambio: URL con la dirección exacta para Google Maps y el QR
+    googleMapsURL: "https://www.google.com/maps/search/?api=1&query=Av.+Monte+Blanco+705,+Villas+de+San+Nicolas,+20015+Aguascalientes,+Ags.", 
     allowedExt: ['.jpg', '.png', '.webp', '.jpeg'],
     logoMarca: "assets/brand/logo-mini.png" 
 };
@@ -33,9 +33,7 @@ function initYouTubeAutoMute() {
     const ytLink = document.getElementById('link-yt');
     if (ytLink) {
         ytLink.addEventListener('click', () => {
-            if (!isMuted) {
-                toggleAudioGlobal();
-            }
+            if (!isMuted) toggleAudioGlobal();
         });
     }
 }
@@ -45,12 +43,7 @@ function toggleAudioGlobal() {
     const audios = document.querySelectorAll('audio');
     const icon = document.getElementById('audio-icon');
     audios.forEach(a => { a.muted = isMuted; });
-    
-    if (isMuted) {
-        icon.className = "fas fa-volume-mute";
-    } else {
-        icon.className = "fas fa-volume-up";
-    }
+    icon.className = isMuted ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
 function initBusinessData() {
